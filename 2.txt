@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trends Men Wear</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #222831;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #00adb5;
+    }
+
+    .nav-options {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-options a, .nav-options h4 {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .nav-options select, .nav-options input {
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+
+    .nav-options i {
+      font-size: 1.4rem;
+      color: #00adb5;
+      cursor: pointer;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 2rem 0 1rem;
+      font-size: 2.5rem;
+      color: #222831;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 1rem 2rem 3rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1rem;
+    }
+
+    .product-info h3 {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .rating i {
+      color: #ffb703;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Trends</h1>
+    <div class="nav-options">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <h4>Filter</h4>
+      <select id="priceFilter" onchange="filterByPrice()">
+        <option value="default">Sort By Price</option>
+        <option value="low">Low to High</option>
+        <option value="high">High to Low</option>
+      </select>
+      <input type="search" id="searchBar" placeholder="Search item..." onkeyup="searchItems()">
+      <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+  </header>
+
+  <h2>Vijaya Stores</h2>
+
+  <div class="product-grid" id="productGrid">
+    <!-- Product 1 -->
+    <div class="product-card" data-price="500">
+      <img src="photo-1606311698062-21c4f57cb27f - Copy.avif" alt="Book Set">
+      <div class="product-info">
+        <h3>📚 Book Set</h3>
+        <h3>💰 ₹500</h3>
+        <div class="rating">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+    </div>
+
+    
+
+   
+
+   
+
+    <!-- Product 5 -->
+    <div class="product-card" data-price="999">
+      <img src="OIP (1).jpg" alt="Sports Shoes">
+      <div class="product-info">
+        <h3>👟 Sports Shoes</h3>
+        <h3>💰 ₹999</h3>
+        <div class="rating">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product-card" data-price="299">
+      <img src="OIP (4).jpg" alt="Black Cap">
+      <div class="product-info">
+        <h3>🧢 Black Cap</h3>
+        <h3>💰 ₹299</h3>
+        <div class="rating">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 7 -->
+    <div class="product-card" data-price="1499">
+      <img src="OIP (3).jpg" alt="Hoodie">
+      <div class="product-info">
+        <h3>🧥 Hoodie</h3>
+        <h3>💰 ₹1,499</h3>
+        <div class="rating">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function searchItems() {
+      const searchValue = document.getElementById("searchBar").value.toLowerCase();
+      const cards = document.querySelectorAll(".product-card");
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(searchValue) ? "block" : "none";
+      });
+    }
+
+    function filterByPrice() {
+      const value = document.getElementById("priceFilter").value;
+      const grid = document.getElementById("productGrid");
+      const cards = Array.from(grid.getElementsByClassName("product-card"));
+
+      if (value === "low") {
+        cards.sort((a, b) => parseInt(a.dataset.price) - parseInt(b.dataset.price));
+      } else if (value === "high") {
+        cards.sort((a, b) => parseInt(b.dataset.price) - parseInt(a.dataset.price));
+      } else {
+        return;
+      }
+
+      // Clear and re-append sorted cards
+      grid.innerHTML = "";
+      cards.forEach(card => grid.appendChild(card));
+    }
+  </script>
+
+</body>
+</html>
